@@ -556,7 +556,6 @@
     function setupEventListeners() {
         // Global Listeners
         window.addEventListener('hashchange', () => handleNavigation(window.location.hash));
-        DOM.loginForm.addEventListener('submit', handleLogin);
         
         // Mobile Menu
         DOM.menuToggle.addEventListener('click', () => DOM.sidebar.classList.toggle('show'));
@@ -613,6 +612,9 @@
 
     // --- START ---
     document.addEventListener('DOMContentLoaded', () => {
+        // O listener de login deve ser registrado SEMPRE, independente de estar logado
+        DOM.loginForm.addEventListener('submit', handleLogin);
+
         if (localStorage.getItem('adminApiKey')) {
             initializeApp();
         }
